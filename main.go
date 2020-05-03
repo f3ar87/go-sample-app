@@ -9,6 +9,21 @@ import (
 func main() {
 	controllers.RegisterControllers()
 	http.ListenAndServe(":3000", nil)
+
+	/*
+		--> In alternativa posso dichiarare direttamente la funzione che gestisca le richieste
+
+		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+			http.ServeFile(w, r, "public"+r.URL.Path)
+		})
+		http.ListenAndServe(":8000", nil)
+	*/
+
+	/*
+		--> Oppure posso usare degli handler pre-built di Go
+		http.ListenAndServe(":8000", http.FileServer(http.Dir("public")))
+	*/
+
 }
 
 /*
